@@ -128,7 +128,8 @@ export default class SearchBar extends Component {
           returnKeyType={'search'}
           onChangeText={e => {
             this.inputChange(e);
-          }}></TextInput>
+          }}
+        />
         <Animated.View
           style={[
             {
@@ -139,7 +140,7 @@ export default class SearchBar extends Component {
             },
           ]}>
           <TouchableHighlight onPress={this.onSearch}>
-            <Icon name={'search'} style={styles.search_icon}></Icon>
+            <Icon name={'search'} style={styles.search_icon} />
           </TouchableHighlight>
         </Animated.View>
       </Animated.View>
@@ -167,6 +168,7 @@ const styles = StyleSheet.create({
     color: '#B2B2B2',
   },
   search_text: {
+    height: 36,
     flexDirection: 'row',
     backgroundColor: '#FFF',
     justifyContent: 'center',

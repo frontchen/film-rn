@@ -82,7 +82,7 @@ class SearchResult extends Component {
     if (!res || !res.length) {
       return false;
     }
-
+    console.log(['search', res]);
     let list = res.map(v => {
       let obj = {
         path: v.imgPath,
@@ -163,7 +163,7 @@ class SearchResult extends Component {
         }}>
         <Card
           key={data.index}
-          image={{path: data.path}}
+          image={{path: item.path}}
           height={parseInt((screenWidth / 4) * 1.2)}
           columns={item.columns}
         />
@@ -234,7 +234,7 @@ class SearchResult extends Component {
   render() {
     let {isLoading, height, flatListData, keyWords} = this.state;
     return (
-      <SafeAreaView style={AppStyle.container}>
+      <View style={AppStyle.container}>
         <Header
           style={AppStyle.headerStyle}
           title={'搜索'}
@@ -249,40 +249,42 @@ class SearchResult extends Component {
             </TouchableOpacity>
           }
         />
-        <SearchBar
-          onChange={this.querySearchBar}
-          value={keyWords}
-          onSubmitEditing={this.onSubmitEditing}
-        />
-        <View style={[styles.flatList, {height: height, marginVertical: 6}]}>
-          {flatListData.length ? (
-            <FlatList
-              keyExtractor={(item, index) => index.toString()}
-              data={flatListData}
-              renderItem={data => {
-                return this._renderItem(data);
-              }}
-              refreshControl={
-                <RefreshControl
-                  title={'loading'}
-                  colors={['blue']}
-                  refreshing={isLoading}
-                  onRefresh={() => {
-                    this.loadData();
-                  }}
-                />
-              }
-              ListFooterComponent={() => isLoading && this._genIndicator()}
-              onEndReachedThreshold={0.1}
-              onEndReached={() => {
-                this._onEndReachedloadData();
-              }}
-            />
-          ) : (
-            <Result />
-          )}
-        </View>
-      </SafeAreaView>
+        <SafeAreaView>
+          <SearchBar
+            onChange={this.querySearchBar}
+            value={keyWords}
+            onSubmitEditing={this.onSubmitEditing}
+          />
+          <View style={[styles.flatList, {height: height, marginVertical: 6}]}>
+            {flatListData.length ? (
+              <FlatList
+                keyExtractor={(item, index) => index.toString()}
+                data={flatListData}
+                renderItem={data => {
+                  return this._renderItem(data);
+                }}
+                refreshControl={
+                  <RefreshControl
+                    title={'loading'}
+                    colors={['blue']}
+                    refreshing={isLoading}
+                    onRefresh={() => {
+                      this.loadData();
+                    }}
+                  />
+                }
+                ListFooterComponent={() => isLoading && this._genIndicator()}
+                onEndReachedThreshold={0.1}
+                onEndReached={() => {
+                  this._onEndReachedloadData();
+                }}
+              />
+            ) : (
+              <Result />
+            )}
+          </View>
+        </SafeAreaView>
+      </View>
     );
   }
 }

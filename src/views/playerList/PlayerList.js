@@ -75,57 +75,56 @@ class PlayerList extends Component {
       hiddenStatusBar,
     } = this.state;
     return (
-      <SafeAreaView style={AppStyle.container}>
-        <StatusBar
-          hidden={Platform.OS === 'ios' ? true : hiddenStatusBar}
-          showHideTransition={'fade'}
-        />
-        {videoUrl.endsWith('.m3u8') ? (
-          <VideoPlayer
-            videoUrl={videoUrl}
-            fullscreen={fullscreen}
-            fullscreenAutorotate={true}
-            fullscreenOrientation={'landscape'} //landscape portrait
-            loading={loading}
-            onPressFullScreenBtn={() => {
-              this._onPressFullScreenBtn();
-            }}
-            // 全屏停止前的回调
-            onFullscreenPlayerWillDismiss={() => {
-              this.setState({
-                fullscreen: false,
-              });
-            }}
-            is_full_screen={androidFullscreen}
-            onBack={() => {
-              this._onPressFullScreenBtn();
-            }}
-          />
-        ) : (
-          <View style={{flex: 1}}>
-            <WebView
-              source={{
-                uri: videoUrl,
+      <View style={AppStyle.container}>
+        <StatusBar hidden={hiddenStatusBar} showHideTransition={'fade'} />
+        <SafeAreaView>
+          {videoUrl.endsWith('.m3u8') ? (
+            <VideoPlayer
+              videoUrl={videoUrl}
+              fullscreen={fullscreen}
+              fullscreenAutorotate={true}
+              fullscreenOrientation={'landscape'} //landscape portrait
+              loading={loading}
+              onPressFullScreenBtn={() => {
+                this._onPressFullScreenBtn();
               }}
-            />
-          </View>
-        )}
-        {!androidFullscreen ? (
-          <View style={styles.container}>
-            <Episode
-              data={
-                params.list && Array.isArray(params.list) ? params.list : []
-              }
-              onChange={item => {
-                params.path = item.path;
-                this.setState({params}, () => {
-                  this._getPlayerUrl();
+              // 全屏停止前的回调
+              onFullscreenPlayerWillDismiss={() => {
+                this.setState({
+                  fullscreen: false,
                 });
               }}
+              is_full_screen={androidFullscreen}
+              onBack={() => {
+                this._onPressFullScreenBtn();
+              }}
             />
-          </View>
-        ) : null}
-      </SafeAreaView>
+          ) : (
+            <View style={{flex: 1}}>
+              <WebView
+                source={{
+                  uri: videoUrl,
+                }}
+              />
+            </View>
+          )}
+          {!androidFullscreen ? (
+            <View style={styles.container}>
+              <Episode
+                data={
+                  params.list && Array.isArray(params.list) ? params.list : []
+                }
+                onChange={item => {
+                  params.path = item.path;
+                  this.setState({params}, () => {
+                    this._getPlayerUrl();
+                  });
+                }}
+              />
+            </View>
+          ) : null}
+        </SafeAreaView>
+      </View>
     );
   }
 }

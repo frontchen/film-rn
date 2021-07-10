@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TouchableOpacity, SafeAreaView} from 'react-native';
+import {TouchableOpacity, SafeAreaView, View} from 'react-native';
 import {Header, Icon} from '../../components/Index';
 import {AppStyle} from '../../styles/Index';
 import TabarDetail from '../tabarDetail/TabarDetail';
@@ -21,7 +21,7 @@ export default class Anime extends Component {
   };
   render() {
     return (
-      <SafeAreaView style={AppStyle.container}>
+      <View style={AppStyle.container}>
         <Header
           style={AppStyle.headerStyle}
           title={'动漫'}
@@ -36,8 +36,10 @@ export default class Anime extends Component {
             </TouchableOpacity>
           }
         />
-        <TabarDetail title="动漫" {...this.props}></TabarDetail>
-      </SafeAreaView>
+        <SafeAreaView>
+          <TabarDetail title="动漫" {...this.props} />
+        </SafeAreaView>
+      </View>
     );
   }
 }

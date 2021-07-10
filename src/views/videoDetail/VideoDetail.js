@@ -49,7 +49,7 @@ class VideoDetail extends Component {
   render() {
     let {params, title, author, body} = this.state;
     return (
-      <SafeAreaView style={AppStyle.container}>
+      <View style={AppStyle.container}>
         <Header
           style={AppStyle.headerStyle}
           title={author || ''}
@@ -64,16 +64,18 @@ class VideoDetail extends Component {
             </TouchableOpacity>
           }
         />
-        <Card image={{path: params.imgPath}} columns={title} />
-        <View style={styles.container}>
-          <Episode
-            data={body}
-            onChange={(item, indexs) => {
-              this.playItemChange({...item, name: author}, indexs);
-            }}
-          />
-        </View>
-      </SafeAreaView>
+        <SafeAreaView>
+          <Card image={{path: params.imgPath}} columns={title} />
+          <View style={styles.container}>
+            <Episode
+              data={body}
+              onChange={(item, indexs) => {
+                this.playItemChange({...item, name: author}, indexs);
+              }}
+            />
+          </View>
+        </SafeAreaView>
+      </View>
     );
   }
 }

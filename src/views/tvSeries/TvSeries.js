@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TouchableOpacity, SafeAreaView} from 'react-native';
+import {TouchableOpacity, SafeAreaView, View} from 'react-native';
 import {Header, Icon} from '../../components/Index';
 import {AppStyle} from '../../styles/Index';
 import TabarDetail from '../tabarDetail/TabarDetail';
@@ -26,7 +26,7 @@ export default class TvSeries extends Component {
   };
   render() {
     return (
-      <SafeAreaView style={AppStyle.container}>
+      <View style={AppStyle.container}>
         <Header
           style={AppStyle.headerStyle}
           title={'电视剧'}
@@ -41,8 +41,10 @@ export default class TvSeries extends Component {
             </TouchableOpacity>
           }
         />
-        <TabarDetail title="电视剧" {...this.props}></TabarDetail>
-      </SafeAreaView>
+        <SafeAreaView>
+          <TabarDetail title="电视剧" {...this.props} />
+        </SafeAreaView>
+      </View>
     );
   }
 }
