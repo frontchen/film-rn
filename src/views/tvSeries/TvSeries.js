@@ -41,7 +41,7 @@ export default class TvSeries extends Component {
             </TouchableOpacity>
           }
         />
-        <SafeAreaView>
+        <SafeAreaView style={{flex: 1}}>
           <TabarDetail title="电视剧" {...this.props} />
         </SafeAreaView>
       </View>

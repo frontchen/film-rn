@@ -1,14 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {
-  View,
-  Platform,
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-} from 'react-native';
+import {View, SafeAreaView, StyleSheet, TouchableOpacity} from 'react-native';
 import {AppStyle} from '../../styles/Index';
-import {VideoPlayer} from '../../components/Index';
+import {VideoPlayer, Icon, Header} from '../../components/Index';
 import {WebView} from 'react-native-webview';
 import Toast from '../../components/Toast';
 import Episode from '../episode/Episode'; //剧集列表
@@ -39,6 +33,7 @@ class PlayerList extends Component {
   }
   _getPlayerUrl = () => {
     let {params} = this.state;
+    console.log(['params', params]);
     this.setState(
       {
         loading: true,
@@ -76,8 +71,23 @@ class PlayerList extends Component {
     } = this.state;
     return (
       <View style={AppStyle.container}>
-        <StatusBar hidden={hiddenStatusBar} showHideTransition={'fade'} />
-        <SafeAreaView>
+        {/* <StatusBar hidden={hiddenStatusBar} showHideTransition={'fade'} /> */}
+        <Header
+          style={AppStyle.headerStyle}
+          showHeader={!androidFullscreen}
+          title={params.search || ''}
+          leftStyle={AppStyle.header_btn_left}
+          rightStyle={AppStyle.header_btn_right}
+          headerLeft={
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.goBack();
+              }}>
+              <Icon name={'arrowLeft'} style={{fontSize: 20, color: '#fff'}} />
+            </TouchableOpacity>
+          }
+        />
+        <SafeAreaView style={{flex: 1}}>
           {videoUrl.endsWith('.m3u8') ? (
             <VideoPlayer
               videoUrl={videoUrl}

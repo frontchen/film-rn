@@ -39,7 +39,7 @@ export default class Variety extends Component {
             </TouchableOpacity>
           }
         />
-        <SafeAreaView>
+        <SafeAreaView style={{flex: 1}}>
           <TabarDetail title="综艺" {...this.props} />
         </SafeAreaView>
       </View>

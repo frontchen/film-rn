@@ -249,7 +249,7 @@ class SearchResult extends Component {
             </TouchableOpacity>
           }
         />
-        <SafeAreaView>
+        <SafeAreaView style={{flex: 1}}>
           <SearchBar
             onChange={this.querySearchBar}
             value={keyWords}

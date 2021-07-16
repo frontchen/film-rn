@@ -36,7 +36,7 @@ export default class Anime extends Component {
             </TouchableOpacity>
           }
         />
-        <SafeAreaView>
+        <SafeAreaView style={{flex: 1}}>
           <TabarDetail title="动漫" {...this.props} />
         </SafeAreaView>
       </View>

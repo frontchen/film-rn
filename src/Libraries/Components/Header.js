@@ -10,6 +10,12 @@ import {
 import PropTypes from 'prop-types';
 
 export default class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showHeader: this.props.showHeader,
+    };
+  }
   static propTypes = {
     style: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
     statusBarStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
@@ -22,6 +28,7 @@ export default class Header extends Component {
     headerRight: PropTypes.element,
     barStyle: PropTypes.string,
     showStatusBar: PropTypes.bool,
+    showHeader: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -31,8 +38,13 @@ export default class Header extends Component {
     title: '',
     barStyle: 'light-content',
     showStatusBar: true,
+    showHeader: true,
   };
-
+  static getDerivedStateFromProps(props) {
+    return {
+      showHeader: props.showHeader,
+    };
+  }
   // iPhone X、iPhone XS: 375 812
   // iPhone XR、iPhone XS Max: 414 896
   iphoneX() {
@@ -77,12 +89,12 @@ export default class Header extends Component {
       leftStyle,
       rightStyle,
     } = this.props;
-
+    const {showHeader} = this.state;
     const barViewStyle = [
       {height: showStatusBar ? this.statusBarHeight() : 0},
       statusBarStyle,
     ];
-
+    if (!showHeader) return null;
     return (
       <View style={style}>
         <StatusBar

@@ -64,7 +64,7 @@ class VideoDetail extends Component {
             </TouchableOpacity>
           }
         />
-        <SafeAreaView>
+        <SafeAreaView style={{flex: 1}}>
           <Card image={{path: params.imgPath}} columns={title} />
           <View style={styles.container}>
             <Episode

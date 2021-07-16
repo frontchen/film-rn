@@ -37,7 +37,7 @@ class Film extends Component {
             </TouchableOpacity>
           }
         />
-        <SafeAreaView>
+        <SafeAreaView style={{flex: 1}}>
           <TabarDetail title="电影" {...this.props} />
         </SafeAreaView>
       </View>
