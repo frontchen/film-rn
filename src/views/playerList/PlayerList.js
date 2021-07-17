@@ -61,21 +61,14 @@ class PlayerList extends Component {
     });
   };
   render() {
-    let {
-      params,
-      fullscreen,
-      androidFullscreen,
-      videoUrl,
-      loading,
-      hiddenStatusBar,
-    } = this.state;
+    let {params, fullscreen, androidFullscreen, videoUrl, loading} = this.state;
     return (
       <View style={AppStyle.container}>
         {/* <StatusBar hidden={hiddenStatusBar} showHideTransition={'fade'} /> */}
         <Header
           style={AppStyle.headerStyle}
           showHeader={!androidFullscreen}
-          title={params.search || ''}
+          title={params.name || ''}
           leftStyle={AppStyle.header_btn_left}
           rightStyle={AppStyle.header_btn_right}
           headerLeft={
