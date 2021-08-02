@@ -68,6 +68,7 @@ class PlayerList extends Component {
         <Header
           style={AppStyle.headerStyle}
           showHeader={!androidFullscreen}
+          showStatusBar={!androidFullscreen}
           title={params.name || ''}
           leftStyle={AppStyle.header_btn_left}
           rightStyle={AppStyle.header_btn_right}

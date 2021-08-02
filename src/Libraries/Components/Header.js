@@ -14,6 +14,7 @@ export default class Header extends Component {
     super(props);
     this.state = {
       showHeader: this.props.showHeader,
+      showStatusBar: this.props.showStatusBar,
     };
   }
   static propTypes = {
@@ -43,6 +44,7 @@ export default class Header extends Component {
   static getDerivedStateFromProps(props) {
     return {
       showHeader: props.showHeader,
+      showStatusBar: props.showStatusBar,
     };
   }
   // iPhone X、iPhone XS: 375 812
@@ -82,19 +84,27 @@ export default class Header extends Component {
       headerCenter,
       title,
       barStyle,
-      showStatusBar,
       style,
       statusBarStyle,
       headerStyle,
       leftStyle,
       rightStyle,
     } = this.props;
-    const {showHeader} = this.state;
+    const {showHeader, showStatusBar} = this.state;
     const barViewStyle = [
       {height: showStatusBar ? this.statusBarHeight() : 0},
       statusBarStyle,
     ];
-    if (!showHeader) return null;
+    if (!showHeader) {
+      return (
+        <StatusBar
+          backgroundColor={'transparent'}
+          translucent={true}
+          barStyle={barStyle}
+          hidden={!showStatusBar}
+        />
+      );
+    }
     return (
       <View style={style}>
         <StatusBar
