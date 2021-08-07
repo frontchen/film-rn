@@ -106,6 +106,8 @@ class Main extends Component {
     //   return;
     // }
     let info;
+    //没有苹果开发者账号 ios暂不支持热更新
+    if(Platform.OS==='ios') return 
     try {
       info = await checkUpdate(appKey);
     } catch (err) {
