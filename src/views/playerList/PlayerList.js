@@ -82,7 +82,7 @@ class PlayerList extends Component {
           }
         />
         <SafeAreaView style={{flex: 1}}>
-          {videoUrl.endsWith('.m3u8') ? (
+          {videoUrl.endsWith('.m3u8') || !videoUrl.endsWith('.html') ? (
             <VideoPlayer
               videoUrl={videoUrl}
               fullscreen={fullscreen}

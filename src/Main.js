@@ -79,21 +79,23 @@ class Main extends Component {
   doUpdate = async info => {
     try {
       const hash = await downloadUpdate(info);
-      Alert.alert('提示', '下载完毕,是否重启应用?', [
-        {
-          text: '是',
-          onPress: () => {
-            switchVersion(hash);
+      if(hash){
+        Alert.alert('提示', '下载完毕,是否重启应用?', [
+          {
+            text: '是',
+            onPress: () => {
+              switchVersion(hash);
+            },
           },
-        },
-        {text: '否'},
-        {
-          text: '下次启动时',
-          onPress: () => {
-            switchVersionLater(hash);
+          {text: '否'},
+          {
+            text: '下次启动时',
+            onPress: () => {
+              switchVersionLater(hash);
+            },
           },
-        },
-      ]);
+        ]);
+      }
     } catch (err) {
       Alert.alert('提示', '更新失败.');
     }

@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "postinstall": "jetifier -r",
     "build": "cd android &&  ./gradlew assembleRelease",
-    "push": "pushy uploadApk android/app/build/outputs/apk/release/app-release.apk",
+    "push-android": "pushy uploadApk android/app/build/outputs/apk/release/app-release.apk",
     "update-android": "pushy bundle --platform android Bundling with React Native"
   },
   "dependencies": {

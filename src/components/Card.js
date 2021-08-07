@@ -29,6 +29,7 @@ class Card extends Component {
   };
   UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
+      image:nextProps.image,
       columns: nextProps.columns,
     });
   }

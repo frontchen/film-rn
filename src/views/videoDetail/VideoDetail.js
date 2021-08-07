@@ -39,9 +39,10 @@ class VideoDetail extends Component {
     this.setState({body, author, title});
   };
   playItemChange(item, indexs) {
-    let {body} = this.state;
+    let {body,params} = this.state;
     let data = Object.assign({}, item, {
       list: [body[indexs.rowIndex]],
+      search:params.search
     });
     // 跳转播放页
     this.props.navigation.navigate('PlayerList', data);
